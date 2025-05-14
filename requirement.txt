@@ -1,0 +1,7 @@
+dronekit-python
+pygame
+ultralytics
+opencv-python
+picamera
+numpy
+
