@@ -1,0 +1,34 @@
+# Core Robotics & Autopilot
+mavsdk==1.4.4
+pymavlink==2.4.37
+pyros-genmsg==0.6.0
+
+# Computer Vision & AI
+ultralytics==8.0.224
+torch==1.12.0+cu113
+torchvision==0.13.0+cu113
+opencv-python-headless==4.8.0
+gstreamer-python==1.18.5
+
+# Hardware Control
+jetson-gpio==1.0.0
+pygame==2.5.0
+
+# ROS Noetic Integration
+rospkg==1.5.0
+catkin-pkg==0.5.2
+mavros-msgs==2.0.0
+sensor-msgs==1.13.1
+
+# Utilities
+numpy==1.23.5
+pyyaml==6.0.1
+python-dateutil==2.8.2
+tqdm==4.66.1
+
+# Optional (Documentation)
+sphinx==7.1.2
+sphinx-rtd-theme==1.3.0
+
+# Testing
+pytest==7.4.2
