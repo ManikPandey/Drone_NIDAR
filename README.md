@@ -1,146 +1,155 @@
-# Disaster Management Drone System (RAZOR & AIRBOTS)
+Autonomous Dual-Drone System for Disaster Management
+====================================================
 
-## Overview
-This project implements a dual-drone system for disaster response:
-- **RAZOR (Surveillance Drone)**: Autonomous aerial reconnaissance with survivor detection
-- **AIRBOTS (Delivery Drone)**: Payload delivery system with AI-assisted verification
+_Last Updated: August 12, 2025_
 
-Key Features:
-- Real-time video streaming with YOLOv8 object detection
-- MAVLink-based inter-drone communication
-- Autonomous waypoint navigation with failsafes
-- ROS-integrated payload delivery system
-- Cross-platform compatibility (Jetson Nano/Raspberry Pi)
+An advanced, fully autonomous two-drone system designed for search and rescue operations in a disaster scenario. This project was developed for the Disaster Management mission, where a Scout drone surveys a large area to find survivors and a Delivery drone provides aid. The entire system is built on the PX4 autopilot, simulated in Gazebo, and controlled by high-level Python scripts using the MAVSDK.
 
-## System Architecture
-airbots/
-├── config/
-│ ├── px4_params.yaml
-│ └── mavlink_channels.conf
-├── scripts/
-│ ├── core/
-│ │ ├── px4_connector.py
-│ │ ├── autonomous_nav.py
-│ │ └── failsafe_manager.py
-│ ├── payload/
-│ │ ├── servo_controller.py
-│ │ └── audio_alert.py
-│ ├── vision/
-│ │ ├── yolo_detector.py
-│ │ └── video_stream.py
-│ └── comms/
-│ ├── mavlink_bridge.py
-│ └── inter_drone_api.py
-└── launch/
-└── airbots_core.launch
+1\. Mission Objective
+---------------------
 
+In response to a simulated coastal flood, this project deploys two autonomous drones to achieve the following:
 
+1.  **Survey & Detect:** A **Scout Drone (RAZOR)** autonomously surveys a 30-hectare area, identifies stranded survivors using simulated computer vision, and geotags their locations.
+    
+2.  **Collect & Deliver:** A **Delivery Drone (AIRBOTS)** remains on standby, collecting a list of all survivor locations from the Scout.
+    
+3.  **Coordinated Response:** Once the Scout completes its survey and lands, it signals the Delivery drone, which then autonomously flies a multi-point delivery mission to drop survival kits to every survivor before safely returning to land.
+    
 
-## Hardware Requirements
+2\. System Architecture
+-----------------------
 
-### RAZOR (Surveillance)
-- Raspberry Pi 4 (4GB+)
-- Pi Camera Module v3
-- Pixhawk 6X Flight Controller
-- 3DR Radio Telemetry (915MHz)
-- BONKA 35C 5200mAh LiPo
+The system is composed of two primary agents communicating over a local network.
 
-### AIRBOTS (Delivery)
-- Jetson Nano 4GB Developer Kit
-- NEO-M8N GPS with Compass
-- Pixhawk Power Module 28V
-- Long-Range Wireless Speaker
-- 10Ah 6S4P LiPo Battery
+*   **RAZOR (Scout Drone):**
+    
+    *   **Companion Computer:** Raspberry Pi 5 (simulated).
+        
+    *   **Role:** Performs a wide-area lawnmower search pattern, runs a simulated detection pipeline, and acts as the primary data gatherer and mission initiator.
+        
+*   **AIRBOTS (Delivery Drone):**
+    
+    *   **Companion Computer:** NVIDIA Jetson Nano (simulated).
+        
+    *   **Role:** Acts as the logistics and aid delivery agent. It remains on standby until tasked by the Scout drone.
+        
+*   **Software Stack:**
+    
+    *   **Autopilot:** PX4 SITL (v1.16.0)
+        
+    *   **Simulator:** Gazebo Classic (v11.15.1)
+        
+    *   **Control API:** MAVSDK for Python
+        
+    *   **Language:** Python 3.8
+        
 
-## Software Requirements
-- Python 3.8+
-- PX4 v1.14.0
-- ROS Noetic
-- JetPack 5.1.2 (for Jetson Nano)
-- CUDA 11.3
+3\. Core Features
+-----------------
 
-## Installation
+*   **Dual-Drone Cooperative System:** Two drones working together to accomplish a complex mission.
+    
+*   **Fully Autonomous Operation:** From takeoff to landing, all mission phases are handled by the Python scripts without manual intervention.
+    
+*   **Complex Autonomous Search Pattern:** The Scout drone flies a robust lawnmower pattern to ensure full coverage of the designated area.
+    
+*   **Real-time Inter-Drone Communication:** A lightweight UDP broadcast system allows the Scout to send survivor coordinates and a final "mission complete" signal in real-time.
+    
+*   **Advanced "Collect-then-Deliver" Logic:** The Delivery drone intelligently waits for the full survey to be complete before launching its optimized multi-point delivery run.
+    
+*   **Robust State Management & Error Handling:** The scripts include numerous safety checks, pre-flight health validation, and robust control loops to handle potential race conditions and ensure reliable mission execution.
+    
+*   **Stable Multi-Vehicle Simulation:** A definitive launch script provides a stable and correctly configured two-drone environment in Gazebo for consistent testing.
+    
 
-### For Jetson Nano (AIRBOTS)
-sudo apt-get install python3-pip python3-venv
-pip3 install -r requirements.txt --extra-index-url https://download.pytorch.org/whl/cu113
+4\. Project Structure
+---------------------
 
+Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML
+```
+   DRONE/  
+├── launch_dual_sim.sh           # The definitive script to launch the simulation  
+├── requirements.txt             # All Python dependencies  
+├── README.md                    # This file  
+│  ├── RAZOR (Scout)/  
+│   ├── main_scout.py              # Main mission script for the Scout drone  
+│   ├── core/  │   
+│   └── px4_connector.py       # MAVSDK connection manager  
+│   ├── vision/  │   
+│   └── survivor_detector.py   # Simulated survivor detection module  
+│   └── comms/  
+│       └── inter_drone_api.py     # Shared communication module  
+│  └── AIRBOTS (Delivery)/      
+├── main_delivery.py           # Main mission script for the Delivery drone      
+├── core/      
+│   └── px4_connector.py       # MAVSDK connection manager      
+├── payload/      
+│   ├── servo_controller.py    # Logic for payload drop mechanism      
+│   └── audio_alert.py         # Logic for audio alerts      
+└── comms/          
+      └── inter_drone_api.py     # Shared communication module 
+```      
 
+5\. Setup and Installation
+--------------------------
 
-### For Raspberry Pi (RAZOR)
-sudo apt-get install libatlas3-base libjasper-dev
-python3 -m pip install -r requirements.txt
+### Prerequisites
 
+*   A working PX4 development environment for SITL simulation (Ubuntu 20.04 recommended). Follow the official [PX4 Developer Guide](https://docs.px4.io/main/en/dev_setup/dev_env_linux_ubuntu.html).
+    
+*   Gazebo Classic (v11).
+    
+*   Python 3.8 or newer.
+    
 
+### Installation Steps
 
-### Development Environment (x86)
-conda create -n airbots python=3.8
-conda activate airbots
-pip install -r requirements.txt
+1.  git clone cd DRONE
+    
+2.  python3 -m venv airbots-envsource airbots-env/bin/activate
+    
+3.  **requirements.txt:**mavsdkultralyticstorchopencv-pythonnumpy**Install Command:**pip install -r requirements.txt
+    
 
+6\. How to Run the Full Simulation
+----------------------------------
 
+The entire end-to-end mission can be run using three terminals. All commands should be run from the root DRONE/ directory.
 
+### Step 1: Launch the Simulation Environment
 
-## Configuration
-1. Place YOLOv8 models:
-   - AIRBOTS: `airbots/models/yolov8n_survivor.onnx`
-   - RAZOR: `razor/models/yolov5s_survivor.pt`
+In your **first terminal**, run the definitive launch script. This will start Gazebo and spawn both drones in their correct, separate starting positions.
 
-2. Add audio alerts:
-   - AIRBOTS: `airbots/assets/alert.wav`
-   - RAZOR: `razor/assets/alert.wav`
+`   # Make sure the script is executable first: chmod +x launch_dual_sim.sh  ./launch_dual_sim.sh   `
 
-3. Configure MAVLink channels in `config/mavlink_channels.conf`
+Wait for the script to finish and for the Gazebo window to appear with two drones.
 
-## Usage
+### Step 2: Run the Scout Drone (RAZOR)
 
-### Simulation Testing
-Start PX4 SITL
-make px4_sitl gazebo_iris
+In your **second terminal** (with the airbots-env activated), run the Scout's main script. It will connect to the first drone on port 14541.
 
-Run AIRBOTS mission simulation
-python3 scripts/core/autonomous_nav.py --sim
+`   source airbots-env/bin/activate  python3 ./RAZOR/main_scout.py --port 14541   `
 
-Test RAZOR detection system
-python3 razor/scripts/detection_test.py
+The Scout drone will take off and begin its lawnmower search pattern, printing detection coordinates as it finds them.
 
+### Step 3: Run the Delivery Drone (AIRBOTS)
 
+In your **third terminal** (with the airbots-env activated), run the Delivery drone's main script. It will connect to the second drone on port 14542.
 
-### Field Deployment
-AIRBOTS (Jetson Nano)
-roslaunch airbots airbots_core.launch
+`   source airbots-env/bin/activate  python3 ./AIRBOTS/main_delivery.py --port 14542   `
 
-RAZOR (Raspberry Pi)
-python3 razor/main.py --mode autonomous
+The Delivery drone will start in standby mode, printing each survivor coordinate it receives. After the Scout lands and sends the "mission complete" signal, the Delivery drone will automatically begin its multi-point delivery mission.
 
+7\. Next Steps
+--------------
 
-## Inter-Drone Communication
-sequenceDiagram
-RAZOR->>AIRBOTS: MAVLink SURVIVOR_LOCATION (lat, lon)
-AIRBOTS->>RAZOR: MAVLink ACK_PAYLOAD_REQUEST
-AIRBOTS->>GROUND: RTSP Video Stream
-GROUND->>AIRBOTS: MAVLink PAYLOAD_CONFIRM
+With the full mission logic validated in the simulator, the project is now ready for **Phase 4: Hardware Integration**. This involves:
 
-
-
-
-## Safety Features
-- Low-battery RTL (Return-to-Launch)
-- GPS-denied landing protocol
-- Geofence enforcement
-- Emergency manual override
-- Hardware watchdog timer
-
-## License
-Apache 2.0 License - See [LICENSE](LICENSE)
-
-## Contributing
-1. Fork the repository
-2. Create feature branch (`git checkout -b feature`)
-3. Commit changes (`git commit -am 'Add feature'`)
-4. Push to branch (`git push origin feature`)
-5. Open Pull Request
-
----
-
-**Note:** Always perform hardware checks before flight operations. Maintain line-of-sight during testing.
+*   Deploying the code to the physical Raspberry Pi and Jetson Nano companion computers.
+    
+*   Connecting to the physical PX4 flight controller.
+    
+*   Performing bench tests (props-off) to validate sensor data, payload mechanisms, and motor outputs.
+    
+*   Conducting controlled field trials.

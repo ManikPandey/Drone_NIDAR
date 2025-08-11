@@ -1,0 +1,192 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='en-IN' lang='en-IN'>
+<head>
+<meta http-equiv='Content-Type' content='text/html;charset=utf-8' />
+<title>GParted Details</title>
+<style type='text/css'>
+table {border:0}
+th {text-align:left}
+.number_col {text-align:right}
+</style>
+</head>
+<body>
+<p>GParted 1.0.0</p>
+<p>configuration --enable-libparted-dmraid --enable-online-resize</p>
+<p>libparted 3.3</p>
+<p>========================================</p>
+<table>
+<tr><th>Device:</th><td>/dev/sda</td></tr>
+<tr><th>Model:</th><td>ATA VBOX HARDDISK</td></tr>
+<tr><th>Serial:</th><td>VB6dcdce0a-107a293e</td></tr>
+<tr><th>Sector size:</th><td>512</td></tr>
+<tr><th>Total sectors:</th><td>102400000</td></tr>
+<tr><td colspan='2'>&nbsp;</td></tr>
+<tr><th>Heads:</th><td>255</td></tr>
+<tr><th>Sectors/track:</th><td>2</td></tr>
+<tr><th>Cylinders:</th><td>200784</td></tr>
+<tr><td colspan='2'>&nbsp;</td></tr>
+<tr><th>Partition table:</th><td>msdos</td></tr>
+<tr><td colspan='2'>&nbsp;</td></tr>
+</table>
+<table>
+<tr><th>Partition</th><th>Type</th><th class='number_col'>Start</th><th class='number_col'>End</th><th>Flags</th><th>Partition Name</th><th>File System</th><th>Label</th><th>Mount Point</th></tr>
+<tr><td>/dev/sda1</td><td>Primary</td><td class='number_col'>2048</td><td class='number_col'>1050623</td><td>boot</td><td></td><td>fat32</td><td></td><td>/boot/efi</td></tr>
+<tr><td>/dev/sda2</td><td>Extended</td><td class='number_col'>1052670</td><td class='number_col'>96724991</td><td></td><td></td><td>extended</td><td></td><td></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp; /dev/sda5</td><td>Logical</td><td class='number_col'>1052672</td><td class='number_col'>96722943</td><td></td><td></td><td>ext4</td><td></td><td>/</td></tr>
+</table>
+<p>========================================</p>
+<table>
+<tr>
+<td colspan='2'>
+<b>Grow /dev/sda2 from 45.62 GiB to 48.13 GiB</b>&nbsp;&nbsp;00:00:00&nbsp;&nbsp;&nbsp;&nbsp;( SUCCESS )
+</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td>
+<table>
+<tr>
+<td colspan='2'>
+calibrate /dev/sda2&nbsp;&nbsp;00:00:00&nbsp;&nbsp;&nbsp;&nbsp;( SUCCESS )
+</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td>
+<table>
+<tr>
+<td colspan='2'>
+<i>path: /dev/sda2 (partition)<br />start: 1052670<br />end: 96724991<br />size: 95672322 (45.62 GiB)</i>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<table>
+<tr>
+<td colspan='2'>
+grow partition from 45.62 GiB to 48.13 GiB&nbsp;&nbsp;00:00:00&nbsp;&nbsp;&nbsp;&nbsp;( SUCCESS )
+</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td>
+<table>
+<tr>
+<td colspan='2'>
+<i>old start: 1052670<br />old end: 96724991<br />old size: 95672322 (45.62 GiB)</i>
+</td>
+</tr>
+</table>
+<table>
+<tr>
+<td colspan='2'>
+<i>new start: 1052670<br />new end: 101994495<br />new size: 100941826 (48.13 GiB)</i>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<p>========================================</p>
+<table>
+<tr>
+<td colspan='2'>
+<b>Grow /dev/sda5 from 45.62 GiB to 48.04 GiB</b>&nbsp;&nbsp;00:00:01&nbsp;&nbsp;&nbsp;&nbsp;( SUCCESS )
+</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td>
+<table>
+<tr>
+<td colspan='2'>
+calibrate /dev/sda5&nbsp;&nbsp;00:00:01&nbsp;&nbsp;&nbsp;&nbsp;( SUCCESS )
+</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td>
+<table>
+<tr>
+<td colspan='2'>
+<i>path: /dev/sda5 (partition)<br />start: 1052672<br />end: 96722943<br />size: 95670272 (45.62 GiB)</i>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<table>
+<tr>
+<td colspan='2'>
+grow partition from 45.62 GiB to 48.04 GiB&nbsp;&nbsp;00:00:00&nbsp;&nbsp;&nbsp;&nbsp;( SUCCESS )
+</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td>
+<table>
+<tr>
+<td colspan='2'>
+<i>old start: 1052672<br />old end: 96722943<br />old size: 95670272 (45.62 GiB)</i>
+</td>
+</tr>
+</table>
+<table>
+<tr>
+<td colspan='2'>
+<i>new start: 1052672<br />new end: 101789695<br />new size: 100737024 (48.04 GiB)</i>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<table>
+<tr>
+<td colspan='2'>
+grow file system to fill the partition&nbsp;&nbsp;00:00:00&nbsp;&nbsp;&nbsp;&nbsp;( SUCCESS )
+</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td>
+<table>
+<tr>
+<td colspan='2'>
+<b><i>resize2fs -p &apos;/dev/sda5&apos;</i></b>&nbsp;&nbsp;00:00:00&nbsp;&nbsp;&nbsp;&nbsp;( SUCCESS )
+</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td>
+<table>
+<tr>
+<td colspan='2'>
+<i>Filesystem at /dev/sda5 is mounted on /; on-line resizing required<br />old_desc_blocks = 6, new_desc_blocks = 7<br />The filesystem on /dev/sda5 is now 12592128 (4k) blocks long.<br /><br /></i>
+</td>
+</tr>
+</table>
+<table>
+<tr>
+<td colspan='2'>
+<i>resize2fs 1.45.5 (07-Jan-2020)<br /></i>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
