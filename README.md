@@ -74,20 +74,20 @@ Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQL
 ├── README.md                    # This file  
 │  ├── RAZOR (Scout)/  
 │   ├── main_scout.py              # Main mission script for the Scout drone  
-│   ├── core/  │   
-│   └── px4_connector.py       # MAVSDK connection manager  
-│   ├── vision/  │   
-│   └── survivor_detector.py   # Simulated survivor detection module  
+│   ├── core/
+|   │   └── px4_connector.py       # MAVSDK connection manager  
+│   ├── vision/
+│   │   └── survivor_detector.py   # Simulated survivor detection module  
 │   └── comms/  
 │       └── inter_drone_api.py     # Shared communication module  
 │  └── AIRBOTS (Delivery)/      
-├── main_delivery.py           # Main mission script for the Delivery drone      
-├── core/      
-│   └── px4_connector.py       # MAVSDK connection manager      
-├── payload/      
-│   ├── servo_controller.py    # Logic for payload drop mechanism      
-│   └── audio_alert.py         # Logic for audio alerts      
-└── comms/          
+|   ├── main_delivery.py           # Main mission script for the Delivery drone      
+|   ├── core/      
+|   │   └── px4_connector.py       # MAVSDK connection manager      
+|   ├── payload/      
+|   ├   ├── servo_controller.py    # Logic for payload drop mechanism      
+|   │   └── audio_alert.py         # Logic for audio alerts      
+|   └── comms/          
       └── inter_drone_api.py     # Shared communication module 
 ```      
 
