@@ -147,9 +147,18 @@ The Delivery drone will start in standby mode, printing each survivor coordinate
 With the full mission logic validated in the simulator, the project is now ready for **Phase 4: Hardware Integration**. This involves:
 
 *   Deploying the code to the physical Raspberry Pi and Jetson Nano companion computers.
-    
+
 *   Connecting to the physical PX4 flight controller.
     
 *   Performing bench tests (props-off) to validate sensor data, payload mechanisms, and motor outputs.
     
 *   Conducting controlled field trials.
+````
+````
+## Copyright
+
+© 2025 Manik Pandey. All rights reserved.
+
+This drone project and its related materials are the intellectual property of Manik Pandey.  
+Unauthorized reproduction, distribution, or use of any content is strictly prohibited.
+
