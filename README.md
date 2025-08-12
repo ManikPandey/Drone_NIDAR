@@ -153,8 +153,7 @@ With the full mission logic validated in the simulator, the project is now ready
 *   Performing bench tests (props-off) to validate sensor data, payload mechanisms, and motor outputs.
     
 *   Conducting controlled field trials.
-````
-````
+
 ## Copyright
 
 © 2025 Manik Pandey. All rights reserved.
